@@ -40,6 +40,7 @@
 
 .Icon-check {
   position: absolute;
+  color: #8892b0ff;
   left: 12px;
 }
 .Icon-check--active {
@@ -57,5 +58,16 @@
 }
 .Icon-delete:hover {
   color: red;
-  transform: scale(1.5);
+  transform: scale(1.2);
+}
+
+.Icon-edit{
+  position: absolute;
+  color: #8892b0ff;
+  top: -24px;
+  right: 30px;
+}
+
+.Icon-edit:hover {
+  transform: scale(1.2);
 }

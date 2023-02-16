@@ -1,29 +1,28 @@
 import React from 'react';
-import { TodoContext } from './TodoContext';
+import { useNavigate } from 'react-router-dom';
 import '../hojas-de-estilo/TodoForm.css';
 
-function TodoForm() {
-  const [newTodoValue, setNewTodoValue] = React.useState('');
-  const {
-    addTodo,
-    setOpenModal,
-  } = React.useContext(TodoContext);
-  
+function TodoForm(props) {
+  const navigate = useNavigate();
+  const [newTodoValue, setNewTodoValue] = React.useState(props.defaultTodoText || '');
+
   const onChange = (event) => {
     setNewTodoValue(event.target.value);
   };
+
   const onCancel = () => {
-    setOpenModal(false);
+    navigate('/');
   };
+
   const onSubmit = (event) => {
     event.preventDefault();
-    addTodo(newTodoValue);
-    setOpenModal(false);
+    props.submitEvent(newTodoValue);
+    navigate('/');
   };
 
   return (
     <form onSubmit={onSubmit}>
-      <label>Escribe tu nueva Tarea</label>
+      <label>{props.label}</label>
       <textarea
         value={newTodoValue}
         onChange={onChange}
@@ -41,7 +40,7 @@ function TodoForm() {
           type="submit"
           className="TodoForm-button TodoForm-button--add"
         >
-          Añadir
+          {props.submitText}
         </button>
       </div>
     </form>
